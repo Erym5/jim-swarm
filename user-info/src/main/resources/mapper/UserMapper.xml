@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.erym.im.mapper.UserMapper">
+
+    <select id="login" parameterType="org.erym.im.common.model.entity.User" resultType="org.erym.im.common.model.entity.User">
+        select * from user_info where user_name = #{userName} and user_password = #{password}
+    </select>
+
+    <select id="loadUserByUsername" parameterType="org.erym.im.common.model.entity.User" resultType="org.erym.im.common.model.entity.User">
+        select * from user where user_name = #{userName}
+    </select>
+
+    <select id="getUserById" resultType="org.erym.im.common.model.entity.User">
+        select * from user where user_id = #{userId}
+    </select>
+
+    <select id="getUserByIdList" parameterType="java.util.List" resultType="org.erym.im.common.model.entity.User">
+        select * from user where user_id in
+        <foreach collection="userIdList" item="userId" index="index" open="(" close=")" separator=",">
+            #{userId}
+        </foreach>
+    </select>
+
+    <select id="getUserByName" resultType="org.erym.im.common.model.entity.User">
+        select * from user where user_name = #{userName}
+    </select>
+</mapper>

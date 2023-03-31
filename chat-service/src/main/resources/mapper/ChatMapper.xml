@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.erym.im.mapper.ChatMapper">
+
+    <select id="getChatById" resultType="org.erym.im.common.model.vo.MessageVo">
+        select * from message_${tableNum} where sender_id = #{userId} and receiver_id = #{friendId}
+        or sender_id= #{friendId} and receiver_id = #{userId} order by gmt_create asc
+    </select>
+
+    <insert id="saveMessage" parameterType="org.erym.im.common.model.entity.Message">
+        insert into message_${tableNum}(id, sender_id, receiver_id, content, gmt_create)
+        values (#{message.id}, #{message.sender}, #{message.receiver}, #{message.content}, #{message.gmtCreate})
+    </insert>
+
+    <delete id="deleteChat">
+        delete from message_${tableNum} where sender_id = #{userId} and receiver_id = #{friendId}
+        or sender_id = #{friendId} and receiver_id = #{userId}
+    </delete>
+
+</mapper>

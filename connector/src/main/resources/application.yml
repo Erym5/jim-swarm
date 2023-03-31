@@ -1,0 +1,35 @@
+server:
+  port: 8030
+
+spring:
+  application:
+    name: connector
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848  #注册进Nacos
+#    sentinel:
+#      transport:
+#        port: 9999   #指定和Sentinel控制台交互的端口
+#        dashboard: 120.46.213.254:8888  #Sentinel控制台服务地址
+  redis:
+    host: 120.46.213.254
+    port: 6379
+    password: Dhj1314520
+    database: 0
+  profiles:
+    include: redis
+
+#激活Sentinel对Feign的支持
+#feign:
+#  sentinel:
+#    enabled: true
+
+#rocketmq:
+#  name-server: 120.46.213.254:9876
+#  producer:
+#    group: MSG_GROUP
+
+netty:
+  connector-url: localhost_8030
+  port: 9000

@@ -1,0 +1,6 @@
+# Project exclude paths
+/chat-service/target/
+/client-demo/target/
+/common/target/
+/connector/target/
+/user-info/target/
